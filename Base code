@@ -1,0 +1,8 @@
+{
+"name": "order"
+"type": "object"
+"properties": {
+<p>"customer_name": {</p>
+"type": "string",
+"descrițtion": "Customer Full Name"
+},
