@@ -1,0 +1,47 @@
+<div class="customizer">
+
+  <h2>Design Your T-Shirt</h2>
+
+  <!-- Upload Image -->
+  <label>Upload Image</label>
+  <input type="file" id="uploadImage" accept="image/*">
+
+  <!-- Custom Text -->
+  <label>Add Text</label>
+  <input type="text" id="customText" placeholder="Your text">
+
+  <!-- Font -->
+  <select id="fontFamily">
+      <option>Arial</option>
+      <option>Impact</option>
+      <option>Georgia</option>
+      <option>Comic Sans MS</option>
+  </select>
+
+  <!-- Text Color -->
+  <input type="color" id="textColor">
+
+  <!-- Text Size -->
+  <input type="range" id="textSize" min="20" max="80" value="40">
+
+  <!-- Shirt Color -->
+  <select id="shirtColor">
+      <option value="white">White</option>
+      <option value="black">Black</option>
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+  </select>
+
+  <!-- Shirt Size -->
+  <select id="shirtSize">
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+  </select>
+
+</div>
+
+<canvas id="canvas" width="500" height="600"></canvas>
