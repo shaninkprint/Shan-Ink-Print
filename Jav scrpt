@@ -1,0 +1,47 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
+<script>
+
+const canvas = new fabric.Canvas('canvas');
+
+document.getElementById('uploadImage').addEventListener('change', function(e){
+
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+fabric.Image.fromURL(event.target.result,function(img){
+
+img.scale(0.4);
+
+canvas.add(img);
+
+});
+
+};
+
+reader.readAsDataURL(e.target.files[0]);
+
+});
+
+document.getElementById('customText').addEventListener('keyup', function(){
+
+const text = new fabric.Text(this.value,{
+left:100,
+top:100,
+fill:document.getElementById('textColor').value,
+fontSize:document.getElementById('textSize').value,
+fontFamily:document.getElementById('fontFamily').value
+});
+
+canvas.add(text);
+
+});
+
+document.getElementById('shirtColor').addEventListener('change', function(){
+
+canvas.setBackgroundColor(this.value, canvas.renderAll.bind(canvas));
+
+});
+
+</script>
