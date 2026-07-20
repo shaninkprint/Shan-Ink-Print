@@ -53,20 +53,77 @@
 <body>
 
 <div class="checkout-card">
-    <h2>Checkout</h2>
+    <h2>WiPay Checkout</h2>
 
-    <p>Product: Premium Membership</p>
+    <p id="customerName">Product: Order</p>
+    <p id="customerEmail" style="font-size: 12px; color: #666;"></p>
 
-    <div class="price">
-        JMD $100,000.00
+    <div class="price" id="amount">
+        JMD $0.00
     </div>
 
-    <form action="/checkout" method="POST">
-        <button type="submit">
+    <form id="wipayForm" action="/checkout" method="POST">
+        <input type="hidden" id="paymentAmount" name="amount" value="0">
+        <input type="hidden" id="paymentCustomer" name="customer" value="">
+        <input type="hidden" id="paymentEmail" name="email" value="">
+        <button type="submit" id="payBtn">
             Pay with WiPay
         </button>
     </form>
+    
+    <button onclick="goBack()" style="margin-top: 10px; background: #6c757d;">
+        ← Back to Store
+    </button>
+    
+    <div id="successMsg" style="display: none; margin-top: 20px; padding: 15px; background: #d4edda; color: #155724; border-radius: 5px;">
+        <h3>✅ Payment Successful!</h3>
+        <p>Your order has been processed.</p>
+        <p>Thank you for your purchase!</p>
+    </div>
 </div>
+
+<script>
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Get order details from URL parameters
+  const amount = getQueryParam('amount') || '0.00';
+  const customer = getQueryParam('customer') || 'Guest';
+  const email = getQueryParam('email') || '';
+  
+  // Display order details
+  document.getElementById('amount').textContent = 'JMD $' + parseFloat(amount).toFixed(2);
+  document.getElementById('customerName').textContent = 'Customer: ' + decodeURIComponent(customer);
+  document.getElementById('customerEmail').textContent = email ? 'Email: ' + decodeURIComponent(email) : '';
+  
+  // Set hidden form values
+  document.getElementById('paymentAmount').value = amount;
+  document.getElementById('paymentCustomer').value = customer;
+  document.getElementById('paymentEmail').value = email;
+  
+  // Handle form submission
+  document.getElementById('wipayForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Simulate payment processing
+    document.getElementById('wipayForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    document.querySelector('.checkout-card').style.textAlign = 'center';
+    
+    // Clear cart after successful payment
+    setTimeout(function() {
+      sessionStorage.removeItem('orderData');
+      // Optionally redirect back to store after 3 seconds
+      // window.location.href = 'HTML.html';
+    }, 3000);
+  });
+  
+  function goBack() {
+    window.history.back();
+  }
+</script>
 
 </body>
 </html>
