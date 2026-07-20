@@ -1,0 +1,12 @@
+app.post("/checkout", async (req, res) => {
+    // Create your order
+
+    const payment = await createWiPayPayment({
+        amount: 100.00,
+        currency: "JMD",
+        return_url: "https://yourstore.com/payment-success",
+        cancel_url: "https://yourstore.com/payment-cancel"
+    });
+
+    res.redirect(payment.payment_url);
+});
