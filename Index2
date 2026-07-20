@@ -248,25 +248,25 @@ const products=[
 name:"T-shirt",
 price:450.00,
 description:"cotton,nylon, polyester.",
-imageimage:"https://via.placeholder.com/400x250?text=black t-shirt"
+imageimage:"https://via.placeholder.com/400x250?text=t-shirt"
 },
 {
 name:"Sweater",
 price:600.00,
 description:"Thin or Thick.",
-image:"image:"https://via.placeholder.com/400x250?text=black Sweater"
+image:"image:"https://via.placeholder.com/400x250?text=Sweater"
 },
 {
 name:"Caps",
 price:350.00,
 description:"Water-resistant.",
-image:"image:"https://via.placeholder.com/400x250?text= White Cap"
+image:"image:"https://via.placeholder.com/400x250?text=Cap"
 },
 {
 name:"Mugs and plates",
 price:350.00,
 description:"Ceramic mug for hot drinks.",
-image:"image:"https://via.placeholder.com/400x250?text=White Mug and Cup"
+image:"image:"https://via.placeholder.com/400x250?text=Mug and Cup"
 }
 ];
 
