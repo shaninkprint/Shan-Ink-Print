@@ -58,55 +58,115 @@ header a{
     object-fit:cover;
 }
 
-<div class="customizer">
-
-  <h2>Design Your T-Shirt</h2>
-
-  <!-- Upload Image -->
-  <label>Upload Image</label>
-  <input type="file" id="uploadImage" accept="image/*">
-
-  <!-- Custom Text -->
-  <label>Add Text</label>
-  <input type="text" id="customText" placeholder="Your text">
-
-  <!-- Font -->
-  <select id="fontFamily">
-      <option>Arial</option>
-      <option>Impact</option>
-      <option>Georgia</option>
-      <option>Comic Sans MS</option>
-  </select>
-
-  <!-- Text Color -->
-  <input type="color" id="textColor">
-
-  <!-- Text Size -->
-  <input type="range" id="textSize" min="20" max="80" value="40">
-
-  <!-- Shirt Color -->
-  <select id="shirtColor">
-      <option value="white">White</option>
-      <option value="black">Black</option>
-      <option value="red">Red</option>
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
-  </select>
-
-  <!-- Shirt Size -->
-  <select id="shirtSize">
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-      <option>XXL</option>
-  </select>
-
-</div>
-
-<canvas id="canvas" width="500" height="600"></canvas>
 .product-content{
     padding:15px;
+}
+
+.product h3{
+    margin-bottom:10px;
+}
+
+.price{
+    color:green;
+    font-size:20px;
+    margin:10px 0;
+}
+
+button,
+input[type="submit"]{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover,
+input[type="submit"]:hover{
+    background:#0b5ed7;
+}
+
+.remove-button{
+    background:#dc3545;
+    margin-top:8px;
+}
+
+.remove-button:hover{
+    background:#c82333;
+}
+
+section{
+    margin-top:40px;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+}
+
+.cart-item div{
+    max-width:70%;
+}
+
+.cart-item small{
+    color:#666;
+}
+
+.total{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+form{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.confirmation,
+.receipt-card{
+    display:none;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+}
+
+.confirmation{
+    background:#d4edda;
+    color:#155724;
+}
+
+.receipt-card{
+    background:white;
+    color:#333;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.receipt-card button{
+    margin-top:15px;
+}
+
+@media (max-width: 800px){
+    header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
 }
 
 .product h3{
@@ -238,151 +298,168 @@ Place Order
 <p>Your order has been placed successfully.</p>
 </div>
 
+<div class="receipt-card" id="receipt">
+    <h2>Order Receipt</h2>
+    <pre id="receiptContent"></pre>
+    <button id="emailReceiptButton">Email Receipt</button>
+</div>
+
 </section>
 
 </div>
 
 <script>
-
-const products=[
-{
-name:"T-shirt",
-price:450.00,
-description:"cotton,nylon, polyester.",
-imageimage:"https://via.placeholder.com/400x250?text=t-shirt"
-},
-{
-name:"Sweater",
-price:600.00,
-description:"Thin or Thick.",
-image:"image:"https://via.placeholder.com/400x250?text=Sweater"
-},
-{
-name:"Caps",
-price:350.00,
-description:"Water-resistant.",
-image:"image:"https://via.placeholder.com/400x250?text=Cap"
-},
-{
-name:"Mugs and plates",
-price:350.00,
-description:"Ceramic mug for hot drinks.",
-image:"image:"https://via.placeholder.com/400x250?text=Mug and Cup"
-}
+const products = [
+    {
+        name: "T-Shirt",
+        price: 450.00,
+        description: "Cotton, nylon, polyester.",
+        image: "https://via.placeholder.com/400x250?text=Black+T-shirt"
+    },
+    {
+        name: "Sweater",
+        price: 600.00,
+        description: "Thin or thick styles available.",
+        image: "https://via.placeholder.com/400x250?text=Black+Sweater"
+    },
+    {
+        name: "Caps",
+        price: 350.00,
+        description: "Water-resistant and stylish.",
+        image: "https://via.placeholder.com/400x250?text=White+Cap"
+    },
+    {
+        name: "Mugs and Plates",
+        price: 350.00,
+        description: "Ceramic mug set for hot drinks.",
+        image: "https://via.placeholder.com/400x250?text=Mug+and+Plate+Set"
+    }
 ];
 
-let cart=[];
+let cart = [];
 
-const productList=document.getElementById("productList");
-const cartItems=document.getElementById("cartItems");
-const total=document.getElementById("total");
-const cartCount=document.getElementById("cartCount");
+const productList = document.getElementById("productList");
+const cartItems = document.getElementById("cartItems");
+const total = document.getElementById("total");
+const cartCount = document.getElementById("cartCount");
+const confirmation = document.getElementById("confirmation");
+const receipt = document.getElementById("receipt");
+const receiptContent = document.getElementById("receiptContent");
+const emailReceiptButton = document.getElementById("emailReceiptButton");
 
-function displayProducts(){
+function displayProducts() {
+    productList.innerHTML = "";
 
-productList.innerHTML="";
-
-products.forEach((product,index)=>{
-
-productList.innerHTML+=`
-
-<div class="product">
-
-<img src="${product.image}" alt="${product.name}">
-
-<div class="product-content">
-
-<h3>${product.name}</h3>
-
-<p>${product.description}</p>
-
-<div class="price">$${product.price.toFixed(2)}</div>
-
-<button onclick="addToCart(${index})">
-Add to Cart
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
+    products.forEach((product, index) => {
+        productList.innerHTML += `
+            <div class="product">
+                <img src="${product.image}" alt="${product.name}">
+                <div class="product-content">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="price">$${product.price.toFixed(2)}</div>
+                    <button onclick="addToCart(${index})">Add to Cart</button>
+                </div>
+            </div>
+        `;
+    });
 }
 
-function addToCart(index){
-
-cart.push(products[index]);
-
-updateCart();
-
+function addToCart(index) {
+    cart.push({ ...products[index], cartId: Date.now() + Math.random() });
+    updateCart();
 }
 
-function updateCart(){
-
-cartItems.innerHTML="";
-Remove from Cart
-
-</button>
-
-let sum=0;
-
-cart.forEach(item=>{
-
-sum+=item.price;
-
-cartItems.innerHTML+=`
-
-<div class="cart-item">
-
-<span>${item.name}</span>
-
-<strong>$${item.price.toFixed(2)}</strong>
-
-</div>
-
-`;
-
-});
-
-total.textContent=sum.toFixed(2);
-
-cartCount.textContent=cart.length;
-
+function removeFromCart(cartIndex) {
+    cart.splice(cartIndex, 1);
+    updateCart();
 }
 
-document.getElementById("checkoutForm").addEventListener("submit",function(e){
+function updateCart() {
+    cartItems.innerHTML = "";
+    let sum = 0;
 
-e.preventDefault();
+    if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty. Add an item to begin.</p>";
+    } else {
+        cart.forEach((item, index) => {
+            sum += item.price;
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small>${item.description}</small>
+                    </div>
+                    <div>
+                        <span>$${item.price.toFixed(2)}</span><br>
+                        <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
 
-if(cart.length===0){
-
-alert("Your cart is empty.");
-
-return;
-
+    total.textContent = sum.toFixed(2);
+    cartCount.textContent = cart.length;
 }
 
-document.getElementById("confirmation").style.display="block";
+function formatReceipt(name, email, address, notes, items, totalAmount) {
+    const lines = [
+        "Shan Online Store Receipt",
+        "-------------------------",
+        `Customer: ${name}`,
+        `Email: ${email}`,
+        `Delivery Address: ${address}`,
+        "",
+        "Items:",
+        ...items.map(item => `- ${item.name}: $${item.price.toFixed(2)}`),
+        "",
+        `Notes: ${notes || 'None'}`,
+        `Total: $${totalAmount.toFixed(2)}`
+    ];
+    return lines.join("\n");
+}
 
-cart=[];
+function sendReceiptByEmail(email, subject, body) {
+    const mailto = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+}
 
-updateCart();
+const checkoutForm = document.getElementById("checkoutForm");
+checkoutForm.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-this.reset();
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
 
-window.scrollTo({
-top:document.body.scrollHeight,
-behavior:"smooth"
+    const name = document.getElementById("customerName").value.trim();
+    const email = document.getElementById("customerEmail").value.trim();
+    const address = document.getElementById("customerAddress").value.trim();
+    const notes = document.getElementById("orderNotes").value.trim();
+
+    const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+    const receiptText = formatReceipt(name, email, address, notes, cart, totalAmount);
+
+    receiptContent.textContent = receiptText;
+    receipt.style.display = "block";
+    confirmation.style.display = "block";
+
+    emailReceiptButton.onclick = function() {
+        sendReceiptByEmail(email, "Your Shan Online Store Receipt", receiptText);
+    };
+
+    cart = [];
+    updateCart();
+    checkoutForm.reset();
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+    displayProducts();
+    updateCart();
 });
-
-displayProducts();
-
 </script>
 
 </body>
