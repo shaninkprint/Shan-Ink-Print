@@ -174,7 +174,7 @@ input,textarea{
 <body>
 
 <header>
-<h2>My Online Store</h2>
+<h2>Shan Online Store</h2>
 <a href="#cart">🛒 Cart (<span id="cartCount">0</span>)</a>
 </header>
 
