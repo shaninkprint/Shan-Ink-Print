@@ -245,26 +245,26 @@ Place Order
 
 const products=[
 {
-name:"Wireless Headphones",
-price:99.99,
-description:"High quality Bluetooth headphones.",
+name:"T-shirt",
+price:450.00,
+description:"cotton,nylon, polyester.",
 image:"https://via.placeholder.com/300x200"
 },
 {
-name:"Smart Watch",
-price:149.99,
-description:"Track your health and notifications.",
+name:"Sweater",
+price:600.00,
+description:"Thin or Thick.",
 image:"https://via.placeholder.com/300x200"
 },
 {
-name:"Laptop Backpack",
-price:49.99,
-description:"Water-resistant travel backpack.",
+name:"Caps",
+price:350.00,
+description:"Water-resistant.",
 image:"https://via.placeholder.com/300x200"
 },
 {
-name:"Coffee Mug",
-price:15.00,
+name:"Mugs and plates",
+price:350.00,
 description:"Ceramic mug for hot drinks.",
 image:"https://via.placeholder.com/300x200"
 }
@@ -299,6 +299,11 @@ productList.innerHTML+=`
 
 <button onclick="addToCart(${index})">
 Add to Cart
+
+</button>
+
+Remove from Cart
+
 </button>
 
 </div>
