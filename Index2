@@ -57,6 +57,7 @@ header a{
     height:200px;
     object-fit:cover;
 }
+
 <div class="customizer">
 
   <h2>Design Your T-Shirt</h2>
@@ -323,7 +324,6 @@ updateCart();
 function updateCart(){
 
 cartItems.innerHTML="";
-
 Remove from Cart
 
 </button>
