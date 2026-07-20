@@ -1,12 +1,72 @@
-app.post("/checkout", async (req, res) => {
-    // Create your order
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiPay Checkout</title>
 
-    const payment = await createWiPayPayment({
-        amount: 100000.00,
-        currency: "JMD",
-        return_url: "https://yourstore.com/payment-success",
-        cancel_url: "https://yourstore.com/payment-cancel"
-    });
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    res.redirect(payment.payment_url);
-});
+        .checkout-card {
+            background: #fff;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,.15);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .price {
+            font-size: 28px;
+            color: #28a745;
+            margin: 20px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="checkout-card">
+    <h2>Checkout</h2>
+
+    <p>Product: Premium Membership</p>
+
+    <div class="price">
+        JMD $100,000.00
+    </div>
+
+    <form action="/checkout" method="POST">
+        <button type="submit">
+            Pay with WiPay
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
