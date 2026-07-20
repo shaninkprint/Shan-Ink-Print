@@ -302,10 +302,6 @@ Add to Cart
 
 </button>
 
-Remove from Cart
-
-</button>
-
 </div>
 
 </div>
@@ -327,6 +323,10 @@ updateCart();
 function updateCart(){
 
 cartItems.innerHTML="";
+
+Remove from Cart
+
+</button>
 
 let sum=0;
 
