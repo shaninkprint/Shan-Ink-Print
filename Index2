@@ -314,25 +314,25 @@ const products = [
         name: "T-Shirt",
         price: 450.00,
         description: "Cotton, nylon, polyester.",
-        image: "https://via.placeholder.com/400x250?text=Black+T-shirt"
+        image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fombre.com%2Fhpeciai%2F98f4e5298960491082b4c1b3c41edda7%2Feng_pl_Set-of-mens-t-shirts-with-round-neckline-white-black-V2-Z101-128017_1.webp&f=1&nofb=1&ipt=bca65e1ed0d2327bd9c2012535aad34b65c8dc7fcfdb687668d657a49bfe3d1b"
     },
     {
         name: "Sweater",
         price: 600.00,
         description: "Thin or thick styles available.",
-        image: "https://via.placeholder.com/400x250?text=Black+Sweater"
+        image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi5.walmartimages.com%2Fseo%2FFartey-Cable-Knitted-Chunky-Sweater-for-Women-Classic-Solid-Color-Crew-Neck-Pullover-Tops-Fall-Winter-Warm-Long-Sleeve-Sweaters_3d949d27-44dc-4a2d-bba1-ac0ab9aba546.31b6ed60630cc16badc7be90667ef865.jpeg&f=1&nofb=1&ipt=833ef06a1721b74ff8486f3d283b650419f9ea571526eb1f13ac56632d1710a1"
     },
     {
         name: "Caps",
         price: 350.00,
         description: "Water-resistant and stylish.",
-        image: "https://via.placeholder.com/400x250?text=White+Cap"
+        image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fst4.depositphotos.com%2F36526276%2F37837%2Fi%2F450%2Fdepositphotos_378374370-stock-photo-realistic-hat-white-baseball-cap.jpg&f=1&nofb=1&ipt=cfe1f7efa32709f2a801448f0925d9fb712a89ba41cd51be71dddd3991aefd17"
     },
     {
         name: "Mugs and Plates",
         price: 350.00,
         description: "Ceramic mug set for hot drinks.",
-        image: "https://via.placeholder.com/400x250?text=Mug+and+Plate+Set"
+        image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngmart.com%2Ffiles%2F5%2FTea-Cup-PNG-Clipart.png&f=1&nofb=1&ipt=beebce79d969f4112fae19a94c20e0ba65c5562beccda8c5d0b17dd76d7ead70"
     }
 ];
 
