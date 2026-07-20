@@ -248,25 +248,25 @@ const products=[
 name:"T-shirt",
 price:450.00,
 description:"cotton,nylon, polyester.",
-image:"https://via.placeholder.com/300x200"
+image:"https://tse4.mm.bing.net/th/id/OIP.V1nLFewm1CX51oes9B7LgAHaIj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3
 },
 {
 name:"Sweater",
 price:600.00,
 description:"Thin or Thick.",
-image:"https://via.placeholder.com/300x200"
+image:"https://img2.cgtrader.com/items/4453784/42ac064db9/large/sweater-full-sleeves-black-3d-model-42ac064db9.jpg
 },
 {
 name:"Caps",
 price:350.00,
 description:"Water-resistant.",
-image:"https://via.placeholder.com/300x200"
+image:"https://tse3.mm.bing.net/th/id/OIP.BkwXi1kKHJv0aROTbyUU4wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3
 },
 {
 name:"Mugs and plates",
 price:350.00,
 description:"Ceramic mug for hot drinks.",
-image:"https://via.placeholder.com/300x200"
+image:"https://th.bing.com/th/id/R.990f880d800b810ea8e5a2e66b8bbfdb?rik=6oQ0rEShLg6Ajg&pid=ImgRaw&r=0
 }
 ];
 
