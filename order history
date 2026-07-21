@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order History</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background: #007BFF;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.pending {
+    background: orange;
+}
+
+.completed {
+    background: green;
+}
+
+.cancelled {
+    background: red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Order History</h2>
+
+<table>
+<thead>
+<tr>
+<th>Order #</th>
+<th>Appointment Date</th>
+<th>Customer</th>
+<th>Delivery Address</th>
+<th>Delivery Option</th>
+<th>Cost</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="orderTable">
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+const orders = [
+
+{
+id:1001,
+date:"2026-07-21",
+customer:"John Brown",
+address:"12 King Street, Kingston",
+delivery:"Same Day Pickup & Delivery",
+cost:1500,
+status:"Completed"
+},
+
+{
+id:1002,
+date:"2026-07-22",
+customer:"Sarah Smith",
+address:"45 Hope Road, Kingston",
+delivery:"Express (2 Business Days)",
+cost:1000,
+status:"Pending"
+},
+
+{
+id:1003,
+date:"2026-07-23",
+customer:"Michael Davis",
+address:"8 Spanish Town Road",
+delivery:"Standard Delivery",
+cost:700,
+status:"Cancelled"
+}
+
+];
+
+const table=document.getElementById("orderTable");
+
+orders.forEach(order=>{
+
+let statusClass="";
+
+if(order.status==="Completed")
+statusClass="completed";
+
+else if(order.status==="Pending")
+statusClass="pending";
+
+else
+statusClass="cancelled";
+
+table.innerHTML += `
+<tr>
+<td>#${order.id}</td>
+<td>${order.date}</td>
+<td>${order.customer}</td>
+<td>${order.address}</td>
+<td>${order.delivery}</td>
+<td>$${order.cost.toLocaleString()}</td>
+<td><span class="status ${statusClass}">${order.status}</span></td>
+</tr>
+`;
+
+});
+
+</script>
+
+</body>
+</html>
