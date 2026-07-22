@@ -1,0 +1,47 @@
+<section class="policies">
+  <h2>Store Policies</h2>
+
+  <div class="policy-card">
+    <h3>Cancelled Scheduled Requests</h3>
+    <p>
+      Customers are eligible to cancel requests for printing services within
+      <strong>24 hours</strong> after placing their order, provided production
+      has not yet begun.
+    </p>
+  </div>
+
+  <div class="policy-card">
+    <h3>Payments & Refunds</h3>
+    <p>
+      Customers may request to cancel payments within
+      <strong>24 hours</strong> of placing an order. Refund processing times
+      may vary depending on your bank and the day the request is made.
+      A confirmation email will be sent once the refund has been processed.
+    </p>
+  </div>
+
+  <div class="policy-card">
+    <h3>Receipts & Confirmations</h3>
+    <p>
+      Confirmation receipts can also be provided through
+      <strong>WhatsApp</strong> upon customer request.
+    </p>
+  </div>
+
+  <div class="policy-card">
+    <h3>Product Completion Policy</h3>
+    <p>
+      If a customer's order is not completed by the promised completion date
+      and is delayed by more than <strong>3 additional days</strong>, the
+      customer will be eligible for a refund.
+    </p>
+  </div>
+
+  <div class="policy-card">
+    <h3>Delivery Policy</h3>
+    <p>
+      Once an order has been completed, delivery is expected within
+      <strong>24–48 hours</strong>, depending on the shipping carrier.
+    </p>
+  </div>
+</section>
