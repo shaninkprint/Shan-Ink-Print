@@ -1,32 +1,134 @@
-<section class="about-us">
-    <div class="about-container">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us - Shan Online Store</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+        background: lightblue;
+        color: #1f2937;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 28px auto;
+        padding: 24px;
+        background: #ffe4ec;
+        border-radius: 18px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+        font-weight: 700;
+      }
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: #0d6efd;
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      nav a {
+        text-decoration: none;
+        color: #0d6efd;
+        font-weight: 700;
+      }
+      h2 {
+        margin-top: 0;
+        color: #0d6efd;
+      }
+      p {
+        line-height: 1.75;
+        color: #374151;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <a class="brand" href="HTML.html">
+          <div class="logo">
+            <img src="images/shAn.png" alt="Shan Online Store logo" />
+          </div>
+          <div>Shan Online Store</div>
+        </a>
+        <nav>
+          <a href="HTML.html">Store</a>
+          <a href="policy.html">Policies</a>
+          <a href="about us.html">About Us</a>
+        </nav>
+      </div>
+
+      <section class="about-us">
         <h2>About Shan's Print</h2>
 
         <p>
-            At <strong>Shan's Print</strong>, our customers are our top priority.
-            We are committed to meeting their needs by providing fast, reliable
-            service and high-quality, long-lasting products.
+          At <strong>Shan's Print</strong>, our customers are our top priority.
+          We are committed to meeting their needs by providing fast, reliable
+          service and high-quality, long-lasting products.
         </p>
 
         <p>
-            We value customer satisfaction and show appreciation to our loyal
-            clients through special discounts and <strong>Customer Appreciation Days</strong>.
+          We value customer satisfaction and show appreciation to our loyal
+          clients through special discounts and <strong>Customer Appreciation Days</strong>.
         </p>
 
         <p>
-            Our services include editing and printing logos and icons on a wide
-            variety of materials, ensuring every product is finished with
-            excellence and professionalism.
+          Our services include editing and printing logos and icons on a wide
+          variety of materials, ensuring every product is finished with
+          excellence and professionalism.
         </p>
 
         <p>
-            Additionally, we provide <strong>free delivery</strong> based on
-            location and distance for the convenience of our customers.
+          Additionally, we provide <strong>free delivery</strong> based on
+          location and distance for the convenience of our customers.
         </p>
 
         <p>
-            At <strong>Shan's Print</strong>, we strive to deliver outstanding
-            results that leave a lasting impression.
+          At <strong>Shan's Print</strong>, we strive to deliver outstanding
+          results that leave a lasting impression.
+        </p>
+      </section>
+      <footer class="footer">
+        <div>
+          <a href="Index.html">Home</a> ·
+          <a href="HTML.html">Store</a> ·
+          <a href="order-history.html">Order History</a> ·
+          <a href="Pay.html">Pay</a>
+        </div>
+        <div style="margin-top:6px;">Published 2026. Owner: Shanique.</div>
+      </footer>
+    </div>
+  </body>
+</html>
+
         </p>
     </div>
 </section>
