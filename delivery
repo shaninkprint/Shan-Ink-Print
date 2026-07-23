@@ -1,140 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appointment & Delivery Booking</title>
-
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f4f4;
-}
-
-.container{
-    width:450px;
-    margin:40px auto;
-    background:#fff;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-}
-
-label{
-    display:block;
-    margin-top:15px;
-    font-weight:bold;
-}
-
-input, select, textarea{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
-    border-radius:5px;
-    border:1px solid #ccc;
-}
-
-button{
-    width:100%;
-    margin-top:20px;
-    padding:12px;
-    background:#007BFF;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-button:hover{
-    background:#0056b3;
-}
-
-.total{
-    margin-top:20px;
-    font-size:20px;
-    font-weight:bold;
-    color:green;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Schedule Appointment</h2>
-
-<form id="bookingForm">
-
-<label>Customer Name</label>
-<input type="text" required>
-
-<label>Phone Number</label>
-<input type="tel" required>
-
-<label>Appointment Date</label>
-<input type="date" required>
-
-<label>Appointment Time</label>
-<input type="time" required>
-
-<label>Delivery Address</label>
-<textarea rows="3" required></textarea>
-
-<label>Select Delivery Option</label>
-
-<select id="deliveryOption" onchange="calculateCost()">
-<option value="">--Choose Option--</option>
-
-<option value="1500">
-Same Day Pickup & Delivery - $1,500
-</option>
-
-<option value="1000">
-Express (2 Business Days) Pickup & Delivery - $1,000
-</option>
-
-<option value="700">
-Standard Delivery - $700
-</option>
-
-</select>
-
-<div class="total">
-Delivery Cost: $<span id="cost">0</span>
-</div>
-
-<button type="submit">
-Book Appointment
-</button>
-
-</form>
-
-</div>
-
-<script>
-
-function calculateCost(){
-
-let option=document.getElementById("deliveryOption");
-
-document.getElementById("cost").innerHTML=option.value || 0;
-
-}
-
-document.getElementById("bookingForm").addEventListener("submit",function(e){
-
-e.preventDefault();
-
-alert(
-"Appointment Successfully Booked!\n\nDelivery Cost: $" +
-document.getElementById("cost").innerHTML
-);
-
-});
-
-</script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivery Options</title>
+    <style>
+      :root {
+        --bg: #eef4ff;
+        --surface: #ffffff;
+        --primary: #0d6efd;
+        --primary-dark: #0b5ed7;
+        --text: #212529;
+        --muted: #6c757d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+      .container {
+        width: min(900px, 96%);
+        margin: 28px auto;
+        padding: 22px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .brand,
+      nav a {
+        text-decoration: none;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: inherit;
+      }
+      .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: var(--primary);
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      nav {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .card {
+        background: var(--surface);
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 18px 40px rgba(26, 54, 126, 0.08);
+      }
+      h1,
+      h2 {
+        margin: 0;
+      }
+      h1 {
+        margin-bottom: 16px;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+      }
+      p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 28px;
+      }
+      .option {
+        border: 1px solid #dce5f3;
+        border-radius: 16px;
+        padding: 22px;
+        background: #fff;
+      }
+      .option h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 14px 0 0;
+      }
+      .note {
+        margin-top: 24px;
+        color: var(--text);
+      }
+      .footer {
+        margin-top: 30px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .footer a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .footer a:hover {
+        color: var(--primary);
+      }
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a class="brand" href="Index.html">
+          <div class="logo">
+            <img src="images/shAn.png" alt="Shan Online Store logo" />
+          </div>
+          <div>
+            <div style="font-weight:700">Shan Online Store</div>
+            <div style="font-size:0.9rem; color:var(--muted);">Delivery options</div>
+          </div>
+        </a>
+        <nav>
+          <a href="Index.html">Home</a>
+          <a href="HTML.html">Store</a>
+          <a href="order-history.html">Order History</a>
+          <a href="Pay.html">Pay</a>
+        </nav>
+      </header>
+      <div class="card">
+        <h1>Delivery & booking</h1>
+        <p>
+          Choose the shipping option that matches your schedule. Each option includes local pickup and delivery pricing for a quick demo experience.
+        </p>
+        <div class="grid">
+          <div class="option">
+            <h3>Same Day Pickup & Delivery</h3>
+            <p>Fastest option for urgent orders. Delivery within the same business day.</p>
+            <div class="price">JMD $1,500</div>
+          </div>
+          <div class="option">
+            <h3>Express Delivery</h3>
+            <p>Delivered in 2 business days with priority handling.</p>
+            <div class="price">JMD $1,000</div>
+          </div>
+          <div class="option">
+            <h3>Standard Delivery</h3>
+            <p>Reliable shipping within 3–5 business days.</p>
+            <div class="price">JMD $700</div>
+          </div>
+        </div>
+        <p class="note">
+          After selecting delivery, use the checkout page to complete your order. You can always return to the store page if you want to purchase another item.
+        </p>
+      </div>
+      <footer class="footer">
+        <div>
+          <a href="Index.html">Home</a> ·
+          <a href="HTML.html">Store</a> ·
+          <a href="order-history.html">Order History</a> ·
+          <a href="Pay.html">Pay</a>
+        </div>
+        <div style="margin-top:6px;">Published 2026. Owner: Shanique.</div>
+      </footer>
+    </div>
+  </body>
 </html>
+
