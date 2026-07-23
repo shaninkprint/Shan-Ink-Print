@@ -1,167 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order History</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1000px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th,
-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
-
-table th {
-    background: #007BFF;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background: #f9f9f9;
-}
-
-.status {
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-}
-
-.pending {
-    background: orange;
-}
-
-.completed {
-    background: green;
-}
-
-.cancelled {
-    background: red;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Order History</h2>
-
-<table>
-<thead>
-<tr>
-<th>Order #</th>
-<th>Appointment Date</th>
-<th>Customer</th>
-<th>Delivery Address</th>
-<th>Delivery Option</th>
-<th>Cost</th>
-<th>Status</th>
-</tr>
-</thead>
-
-<tbody id="orderTable">
-</tbody>
-
-</table>
-
-</div>
-
-<script>
-
-const orders = [
-
-{
-id:1001,
-date:"2026-07-21",
-customer:"John Brown",
-address:"12 King Street, Kingston",
-delivery:"Same Day Pickup & Delivery",
-cost:1500,
-status:"Completed"
-},
-
-{
-id:1002,
-date:"2026-07-22",
-customer:"Sarah Smith",
-address:"45 Hope Road, Kingston",
-delivery:"Express (2 Business Days)",
-cost:1000,
-status:"Pending"
-},
-
-{
-id:1003,
-date:"2026-07-23",
-customer:"Michael Davis",
-address:"8 Spanish Town Road",
-delivery:"Standard Delivery",
-cost:700,
-status:"Cancelled"
-}
-
-];
-
-const table=document.getElementById("orderTable");
-
-orders.forEach(order=>{
-
-let statusClass="";
-
-if(order.status==="Completed")
-statusClass="completed";
-
-else if(order.status==="Pending")
-statusClass="pending";
-
-else
-statusClass="cancelled";
-
-table.innerHTML += `
-<tr>
-<td>#${order.id}</td>
-<td>${order.date}</td>
-<td>${order.customer}</td>
-<td>${order.address}</td>
-<td>${order.delivery}</td>
-<td>$${order.cost.toLocaleString()}</td>
-<td><span class="status ${statusClass}">${order.status}</span></td>
-</tr>
-`;
-
-});
-
-</script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order History</title>
+    <style>
+      :root {
+        --bg: #eef4ff;
+        --surface: #ffffff;
+        --primary: #0d6efd;
+        --text: #212529;
+        --muted: #6c757d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+      .container {
+        width: min(1100px, 96%);
+        margin: 28px auto;
+        padding: 20px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: var(--primary);
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .card {
+        background: var(--surface);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 18px 40px rgba(26, 54, 126, 0.08);
+      }
+      h1 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table th,
+      table td {
+        border: 1px solid #dde2ef;
+        padding: 12px 14px;
+        text-align: left;
+      }
+      table th {
+        background: var(--primary);
+        color: white;
+      }
+      tr:nth-child(even) {
+        background: #f7f9ff;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+      .pending {
+        background: #f0ad4e;
+      }
+      .completed {
+        background: #28a745;
+      }
+      .cancelled {
+        background: #dc3545;
+      }
+      footer {
+        margin-top: 22px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: var(--primary);
+      }
+      @media (max-width: 760px) {
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+        tr {
+          margin-bottom: 16px;
+        }
+        th {
+          background: transparent;
+          color: var(--muted);
+          padding-top: 0;
+        }
+        td {
+          padding-left: 50%;
+          position: relative;
+        }
+        td::before {
+          position: absolute;
+          top: 12px;
+          left: 14px;
+          width: 45%;
+          white-space: nowrap;
+          font-weight: 700;
+          color: var(--muted);
+        }
+        td:nth-of-type(1)::before {
+          content: 'Order #';
+        }
+        td:nth-of-type(2)::before {
+          content: 'Date';
+        }
+        td:nth-of-type(3)::before {
+          content: 'Customer';
+        }
+        td:nth-of-type(4)::before {
+          content: 'Address';
+        }
+        td:nth-of-type(5)::before {
+          content: 'Delivery';
+        }
+        td:nth-of-type(6)::before {
+          content: 'Cost';
+        }
+        td:nth-of-type(7)::before {
+          content: 'Status';
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a class="brand" href="Index.html">
+          <div class="logo">
+            <img src="images/shAn.png" alt="Shan Online Store logo" />
+          </div>
+          <div>
+            <div style="font-weight:700">Shan Online Store</div>
+            <div style="font-size:0.9rem; color:var(--muted);">Order history</div>
+          </div>
+        </a>
+        <nav>
+          <a href="Index.html">Home</a>
+          <a href="HTML.html">Store</a>
+          <a href="delivery.html">Delivery</a>
+          <a href="Pay.html">Pay</a>
+        </nav>
+      </header>
+      <div class="card">
+        <h1>Order History</h1>
+        <p style="color:var(--muted); margin: 8px 0 0;">Review your most recent orders and shipment status.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Address</th>
+              <th>Delivery Option</th>
+              <th>Cost</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="orderTable"></tbody>
+        </table>
+      </div>
+      <footer class="footer">
+        <div>
+          <a href="Index.html">Home</a> ·
+          <a href="HTML.html">Store</a> ·
+          <a href="order-history.html">Order History</a> ·
+          <a href="Pay.html">Pay</a>
+        </div>
+        <div style="margin-top:6px;">Published 2026. Owner: Shanique.</div>
+      </footer>
+    </div>
+    <script>
+      const orders = [
+        {
+          id: 1001,
+          date: '2026-07-21',
+          customer: 'John Brown',
+          address: '12 King Street, Kingston',
+          delivery: 'Same Day Pickup & Delivery',
+          cost: 1500,
+          status: 'Completed',
+        },
+        {
+          id: 1002,
+          date: '2026-07-22',
+          customer: 'Sarah Smith',
+          address: '45 Hope Road, Kingston',
+          delivery: 'Express (2 Business Days)',
+          cost: 1000,
+          status: 'Pending',
+        },
+        {
+          id: 1003,
+          date: '2026-07-23',
+          customer: 'Michael Davis',
+          address: '8 Spanish Town Road',
+          delivery: 'Standard Delivery',
+          cost: 700,
+          status: 'Cancelled',
+        },
+      ];
+      const table = document.getElementById('orderTable');
+      orders.forEach((order) => {
+        let statusClass = 'cancelled';
+        if (order.status === 'Completed') statusClass = 'completed';
+        else if (order.status === 'Pending') statusClass = 'pending';
+        table.innerHTML += `
+          <tr>
+            <td>#${order.id}</td>
+            <td>${order.date}</td>
+            <td>${order.customer}</td>
+            <td>${order.address}</td>
+            <td>${order.delivery}</td>
+            <td>JMD $${order.cost.toLocaleString()}</td>
+            <td><span class="status ${statusClass}">${order.status}</span></td>
+          </tr>
+        `;
+      });
+    </script>
+  </body>
 </html>
