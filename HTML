@@ -1,1 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shan Online Store - Store</title>
+    <style>
+      :root {
+        --bg: #ffe8f0;
+        --surface: #ffe4ec;
+        --primary: #0d6efd;
+        --primary-dark: #0b5ed7;
+        --text: #212529;
+        --muted: #6c757d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14px;
+        background: lightblue;
+        color: var(--text);
+      }
+      .container {
+        width: min(1100px, 96%);
+        margin: 28px auto;
+        padding: 20px;
+        background: var(--surface);
+        border-radius: 18px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; 
+    display: block;
+  }
+  .banner img {
+       width: 100px;
+       height: 100px;
+       object-fit: cover;
+       border-radius: 20px;
+       margin-bottom: 10px;
+     }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .hero {
+        background: var(--surface);
+        border-radius: 18px;
+        padding: 32px;
+        box-shadow: 0 18px 40px rgba(26, 54, 126, 0.08);
+        text-align: center;
+      }
+      .hero h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+      }
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .banner {
+        margin: 24px 0;
+        padding: 24px 28px;
+        border-radius: 20px;
+        background: #ffd7e8;
+        border: 1px solid #ffbedc;
+        box-shadow: 0 14px 30px rgba(255, 148, 183, 0.15);
+        text-align: center;
+      }
+      .banner h2 {
+        margin: 0 0 12px;
+        font-size: 1.8rem;
+      }
+      .banner p {
+        margin: 0;
+        color: #4b2646;
+        line-height: 1.75;
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 28px;
+      }
+      .product {
+        background: #ffe4ec;
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.05);
+      }
+      .product img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;  
+        border-radius: 20px;
+        margin-bottom: 9px;
+      }
+      .product h3 {
+        margin-top: 0;
+      }
+      .price {
+        font-size: 1.35rem;
+        margin: 14px 0;
+        font-weight: 700;
+        color: #1f9258;
+      }
+      .description {
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 0 0 18px;
+      }
+      .product button {
+        display: inline-block;
+        padding: 12px 18px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .product button:hover {
+        background: var(--primary-dark);
+      }
+      .cart-card {
+        background: #ffe4ec;
+        border-radius: 18px;
+        padding: 24px;
+        margin-top: 32px;
+        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.05);
+      }
+      .cart-items {
+        margin-top: 18px;
+      }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e8ecf6;
+      }
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+      .cart-item span {
+        color: var(--muted);
+      }
+      .login-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        z-index: 50;
+      }
+      .login-card {
+        width: min(420px, 100%);
+        background: #ffe4ec;
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+      }
+      .login-card h2 {
+        margin: 0 0 14px;
+        font-size: 1.8rem;
+      }
+      .login-card label {
+        display: block;
+        margin-top: 16px;
+        font-weight: 700;
+      }
+      .login-card input {
+        width: 100%;
+        padding: 12px 14px;
+        margin-top: 8px;
+        border-radius: 12px;
+        border: 1px solid #d7dfe8;
+      }
+      .login-card button {
+        width: 100%;
+        margin-top: 22px;
+        padding: 14px 16px;
+        border: none;
+        border-radius: 999px;
+        background: var(--primary);
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .login-card .error {
+        margin-top: 14px;
+        color: #d63384;
+      }
+      .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .upload-card {
+        margin-top: 24px;
+        padding: 18px;
+        border: 1px dashed #d7dfe8;
+        border-radius: 16px;
+        background: rgba(255, 228, 236, 0.8);
+      }
+      .upload-card label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .upload-card input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #ced4da;
+        background: white;
+      }
+      .attachment-preview {
+        margin-top: 14px;
+        display: grid;
+        gap: 10px;
+      }
+      .attachment-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e7edf8;
+      }
+      .attachment-item span {
+        color: var(--muted);
+      }
+      .attachment-item button {
+        padding: 6px 10px;
+        border: none;
+        border-radius: 999px;
+        background: #f8d7da;
+        color: #721c24;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .checkout-btn {
+        padding: 12px 20px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .checkout-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .delivery-options {
+        margin-top: 20px;
+      }
+      .delivery-options p {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .delivery-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .delivery-btn {
+        padding: 10px 14px;
+        border: 1px solid #d7dfe8;
+        border-radius: 999px;
+        background: white;
+        color: var(--text);
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .delivery-btn.selected {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+      footer {
+        margin-top: 30px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: var(--primary);
+      }
+      @media (max-width: 900px) {
+        .products {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 720px) {
+        .products {
+          grid-template-columns: 1fr;
+        }
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-overlay" id="loginOverlay">
+      <div class="login-card">
+        <h2>Login to Shop</h2>
+        <form id="loginForm">
+          <label for="loginUser">Username</label>
+          <input id="loginUser" type="text" placeholder="Enter username" autocomplete="username" required />
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" placeholder="Enter password" autocomplete="current-password" required />
+          <button type="submit">Sign in</button>
+          <p style="margin-top: 14px; font-size: 0.92rem; color: var(--muted);">
+            <a href="#" id="forgotPasswordLink">Forgot password?</a>
+          </p>
+          <p class="error" id="loginError" aria-live="polite"></p>
+        </form>
+        <form id="resetForm" style="display:none; margin-top:18px;">
+          <label for="resetEmail">Reset password</label>
+          <input id="resetEmail" type="email" placeholder="Enter your email" autocomplete="email" required />
+          <button type="submit">Send reset link</button>
+          <p class="error" id="resetMessage" aria-live="polite" style="color: #155724;"></p>
+          <p style="margin-top: 12px; font-size: 0.92rem; color: var(--muted);">
+            <a href="#" id="backToLoginLink">Back to login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <a class="brand" href="Index.html">
+  <div class="logo">
+    <img src="images/shAn.png" alt="Shan Online Store logo" />
+  </div>
+  <div>
+    <div style="font-weight:700">Shan Online Store</div>
+    <div style="font-size:0.88rem; color: var(--muted);">Shop local items</div>
+  </div>
+</a>
+      <nav>
+  <a href="Index.html">Home</a>
+  <a href="delivery.html">Delivery</a>
+  <a href="order-history.html">Order History</a>
+  <a href="Pay.html">Pay</a>
+  <a href="policy.html">Policies</a>
+  <a href="About us.html">About Us</a>
+</nav>
+<section class="banner">
+  <img src="images/shAn.png" alt="Shan logo" />
+  <h2>Welcome to Shan Online Store</h2>
+  <p>Enjoy fast service, quality prints, and a trusted shopping experience. Browse our products and place your order with confidence.</p>
+</section>
+      <section class="hero">
+        <h1>Explore our Demo Offering</h1>
+        <p>Pick a product to add to your cart and proceed to a quick checkout simulation.</p>
+      </section>
+      <div class="products">
+        <div class="product" data-name="Cap" data-price="350">
+          <img src="images/white cap.webp" alt="White cap" />
+          <h3>Cap</h3>
+          <p class="description">Water-resistant and stylish cap with adjustable strap and breathable fabric for all-day comfort.</p>
+          <div class="price">JMD $350</div>
+          <button type="button" class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product" data-name="Sweater" data-price="600">
+          <img src="images/sweater white.webp" alt="Cozy sweater" /> 
+          <h3>Sweater</h3>
+          <p class="description">Thin or thick styles available, made from soft, warm materials to keep you cozy during chilly weather.</p>
+          <div class="price">JMD $600</div>
+          <button type="button" class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product" data-name="T-Shirt" data-price="450">
+          <img src="images/white-t-shirt.webp" alt="Comfortable t-shirt" />
+          <h3>T-Shirt</h3>
+          <p class="description">Comfortable and durable t-shirt made from high-quality cotton for a perfect fit.</p>
+          <div class="price">JMD $450</div>
+          <button type="button" class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product" data-name="Mugs and Plates" data-price="350">
+          <img src="images/white mug and plate.webp" alt="White mug and plate" />
+          <h3>Mugs and Plates</h3>
+          <p class="description">Ceramic Mug, Cups, tubular and plates sets with unique designs, perfect for daily use or gifting.</p>
+          <div class="price">JMD $350</div>
+          <button type="button" class="add-to-cart">Add to cart</button>
+        </div>
+      </div>
+      <div class="cart-card">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cartItems">
+          <p class="muted">Your cart is empty.</p>
+        </div>
+        <div class="upload-card">
+          <label for="attachmentInput">Attach images or documents</label>
+          <input id="attachmentInput" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" multiple />
+          <div class="attachment-preview" id="attachmentPreview">
+            <p class="muted">No attachments yet.</p>
+          </div>
+        </div>
+        <div class="delivery-options">
+          <p>Select delivery option</p>
+          <div class="delivery-buttons" id="deliveryButtons">
+            <button type="button" class="delivery-btn selected" data-method="Standard Delivery" data-cost="700">Standard JMD $700</button>
+            <button type="button" class="delivery-btn" data-method="Express Delivery" data-cost="1000">Express JMD $1000</button>
+            <button type="button" class="delivery-btn" data-method="Same Day Delivery" data-cost="1500">Same Day JMD $1500</button>
+            <button type="button" class="delivery-btn" data-method="Pickup (No delivery charge)" data-cost="0">Pickup JMD $0</button>
+          </div>
+        </div>
+        <div class="cart-summary">
+          <span>Items total:</span>
+          <span id="cartSubtotal">JMD $0.00</span>
+        </div>
+        <div class="cart-summary">
+          <span>Delivery cost:</span>
+          <span id="shippingCost">JMD $700.00</span>
+        </div>
+        <div class="cart-summary">
+          <strong>Total:</strong>
+          <span id="cartTotal">JMD $0.00</span>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn" disabled>Proceed to checkout</button>
+      </div>
+      <footer class="footer">
+        <div>
+          <a href="Index.html">Home</a> ·
+          <a href="HTML.html">Store</a> ·
+          <a href="order-history.html">Order History</a> ·
+          <a href="Pay.html">Pay</a>
+        </div>
+        <div style="margin-top:6px;">Published 2026. Owner: Shanique.</div>
+      </footer>
+    </div>
+    <script>
+      const cart = [];
+      let shippingPrice = 700;
+      let shippingMethod = 'Standard Delivery';
+      const loginOverlay = document.getElementById('loginOverlay');
+      const loginForm = document.getElementById('loginForm');
+      const loginError = document.getElementById('loginError');
+      const resetForm = document.getElementById('resetForm');
+      const resetEmail = document.getElementById('resetEmail');
+      const resetMessage = document.getElementById('resetMessage');
+      const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+      const backToLoginLink = document.getElementById('backToLoginLink');
+      const cartItems = document.getElementById('cartItems');
+      const attachmentInput = document.getElementById('attachmentInput');
+      const attachmentPreview = document.getElementById('attachmentPreview');
+      const cartSubtotal = document.getElementById('cartSubtotal');
+      const shippingCost = document.getElementById('shippingCost');
+      const cartTotal = document.getElementById('cartTotal');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      const deliveryButtons = document.querySelectorAll('.delivery-btn');
+      let attachments = [];
+
+      function isLoggedIn() {
+        return sessionStorage.getItem('shoppLogin') === 'true';
+      }
+
+      function setLoggedIn() {
+        sessionStorage.setItem('shoppLogin', 'true');
+        loginOverlay.style.display = 'none';
+      }
+
+      function showLogin() {
+        loginOverlay.style.display = 'grid';
+      }
+
+      if (isLoggedIn()) {
+        loginOverlay.style.display = 'none';
+      } else {
+        showLogin();
+      }
+
+      loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const user = document.getElementById('loginUser').value.trim();
+        const pass = document.getElementById('loginPassword').value;
+        if (user === 'user' && pass === 'shop123') {
+          setLoggedIn();
+          loginError.textContent = '';
+        } else {
+          loginError.textContent = 'Invalid username or password. Use user / shop123';
+        }
+      });
+
+      forgotPasswordLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        loginForm.style.display = 'none';
+        resetForm.style.display = 'block';
+        loginError.textContent = '';
+        resetMessage.textContent = '';
+      });
+
+      backToLoginLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        resetForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        resetMessage.textContent = '';
+      });
+
+      resetForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = resetEmail.value.trim();
+        if (!email) {
+          resetMessage.textContent = 'Enter a valid email address.';
+          return;
+        }
+        resetMessage.style.color = '#155724';
+        resetMessage.textContent = `If ${email} exists, a reset link has been sent.`;
+      });
+
+      function formatCurrency(value) {
+        return 'JMD $' + value.toFixed(2);
+      }
+
+      function updateTotals() {
+        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        cartSubtotal.textContent = formatCurrency(subtotal);
+        shippingCost.textContent = formatCurrency(shippingPrice);
+        cartTotal.textContent = formatCurrency(subtotal + shippingPrice);
+        checkoutBtn.disabled = subtotal === 0;
+      }
+
+      function updateCart() {
+        cartItems.innerHTML = '';
+        if (!cart.length) {
+          cartItems.innerHTML = '<p class="muted">Your cart is empty.</p>';
+          updateTotals();
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item';
+          row.innerHTML = `
+            <div>
+              <strong>${item.name}</strong><br />
+              <span>${formatCurrency(item.price)}</span>
+            </div>
+            <button type="button" data-index="${index}" class="remove-btn">Remove</button>
+          `;
+          cartItems.appendChild(row);
+        });
+        updateTotals();
+      }
+
+      function renderAttachments() {
+        attachmentPreview.innerHTML = '';
+        if (!attachments.length) {
+          attachmentPreview.innerHTML = '<p class="muted">No attachments yet.</p>';
+          return;
+        }
+
+        attachments.forEach((file, index) => {
+          const item = document.createElement('div');
+          item.className = 'attachment-item';
+          item.innerHTML = `
+            <div>
+              <strong>${file.name}</strong><br />
+              <span>${(file.size / 1024).toFixed(1)} KB</span>
+            </div>
+            <button type="button" data-index="${index}" class="remove-attachment">Remove</button>
+          `;
+          attachmentPreview.appendChild(item);
+        });
+      }
+
+      function updateAttachments(files) {
+        attachments = Array.from(files);
+        renderAttachments();
+      }
+
+      function addToCart(name, price) {
+        cart.push({ name, price });
+        updateCart();
+      }
+
+      document.querySelectorAll('.add-to-cart').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const product = event.target.closest('.product');
+          const name = product.dataset.name;
+          const price = Number(product.dataset.price);
+          addToCart(name, price);
+        });
+      });
+
+      attachmentInput.addEventListener('change', (event) => {
+        updateAttachments(event.target.files);
+      });
+
+      attachmentPreview.addEventListener('click', (event) => {
+        if (!event.target.classList.contains('remove-attachment')) return;
+        const index = Number(event.target.dataset.index);
+        attachments.splice(index, 1);
+        renderAttachments();
+      });
+
+      deliveryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          deliveryButtons.forEach((btn) => btn.classList.remove('selected'));
+          button.classList.add('selected');
+          shippingPrice = Number(button.dataset.cost);
+          shippingMethod = button.dataset.method;
+          updateTotals();
+        });
+      });
+
+      cartItems.addEventListener('click', (event) => {
+        if (!event.target.classList.contains('remove-btn')) return;
+        const index = Number(event.target.dataset.index);
+        cart.splice(index, 1);
+        updateCart();
+      });
+
+      checkoutBtn.addEventListener('click', () => {
+        if (!cart.length) return;
+        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        const amount = (subtotal + shippingPrice).toFixed(2);
+        const product = encodeURIComponent(cart.map((item) => item.name).join(', '));
+        const delivery = encodeURIComponent(shippingMethod);
+        const attachmentNames = encodeURIComponent(attachments.map((file) => file.name).join(', '));
+        window.location.href = `Pay.html?amount=${amount}&customer=Guest&email=&product=${product}&delivery=${delivery}&attachments=${attachmentNames}`;
+      });
+
+      updateCart();
+    </script>
+  </body>
+</html>
 
