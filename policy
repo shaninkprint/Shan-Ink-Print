@@ -1,47 +1,114 @@
-<section class="policies">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background: #e8f4ff;
+    color: #1f2937;
+  }
+  .container {
+    width: min(1000px, 92%);
+    margin: 24px auto;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  }
+  .policies {
+    margin: 0;
+  }
+  .policies h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 18px;
+  }
+  .policy-card {
+    background: #f8fcff;
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+  .policy-card h3 {
+    margin-top: 0;
+    font-size: 1.15rem;
+    color: #0f172a;
+  }
+  .policy-card p {
+    margin: 10px 0 0;
+    line-height: 1.75;
+    color: #344054;
+  }
+  .page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+  .page-nav a {
+    text-decoration: none;
+    color: #0d6efd;
+    font-weight: 700;
+  }
+</style>
+<div class="container">
+<nav class="page-nav">
+  <a href="policy.html">Policy</a>
+</nav>
+<section class="policies" id="policySection">
   <h2>Store Policies</h2>
 
   <div class="policy-card">
-    <h3>Cancelled Scheduled Requests</h3>
+    <h3>Cancelation Window</h3>
     <p>
-      Customers are eligible to cancel requests for printing services within
-      <strong>24 hours</strong> after placing their order, provided production
-      has not yet begun.
+      Customers may cancel print service orders within <strong>24 hours</strong>
+      of placing the order, provided production has not yet started. This gives
+      you time to make changes before we begin working on your project.
     </p>
   </div>
 
   <div class="policy-card">
-    <h3>Payments & Refunds</h3>
+    <h3>Payments &amp; Refunds</h3>
     <p>
-      Customers may request to cancel payments within
-      <strong>24 hours</strong> of placing an order. Refund processing times
-      may vary depending on your bank and the day the request is made.
-      A confirmation email will be sent once the refund has been processed.
+      Payment cancellations can be requested within <strong>24 hours</strong>
+      of placing your order. Refund timing depends on your bank and the date the
+      request is processed. We will send a confirmation email once your refund
+      has been completed.
     </p>
   </div>
 
   <div class="policy-card">
-    <h3>Receipts & Confirmations</h3>
+    <h3>Receipts &amp; Confirmations</h3>
     <p>
-      Confirmation receipts can also be provided through
-      <strong>WhatsApp</strong> upon customer request.
+      We can provide confirmation receipts via <strong>WhatsApp</strong> upon
+      request. Please ask our team when placing your order if you would like this service.
     </p>
   </div>
 
   <div class="policy-card">
-    <h3>Product Completion Policy</h3>
+    <h3>Order Completion Guarantee</h3>
     <p>
-      If a customer's order is not completed by the promised completion date
-      and is delayed by more than <strong>3 additional days</strong>, the
-      customer will be eligible for a refund.
+      If your order is not finished by the agreed completion date and is delayed
+      by more than <strong>3 additional days</strong>, you will be eligible for a refund.
+      We strive to meet deadlines and keep you informed if any delay occurs.
     </p>
   </div>
 
   <div class="policy-card">
     <h3>Delivery Policy</h3>
     <p>
-      Once an order has been completed, delivery is expected within
-      <strong>24–48 hours</strong>, depending on the shipping carrier.
-    </p>
+      Once your order is complete, delivery is expected within
+      <strong>24–48 hours</strong>, depending on the carrier. Delivery timing may
+      vary based on location and shipping conditions.
+    </p>  
   </div>
+  <footer class="footer">
+        <div>
+          <a href="Index.html">Home</a> ·
+          <a href="HTML.html">Store</a> ·
+          <a href="order-history.html">Order History</a> ·
+          <a href="Pay.html">Pay</a>
+        </div>
+        <div style="margin-top:6px;">Published 2026. Owner: Shanique.</div>
+      </footer>
 </section>
+</div>
