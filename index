@@ -1,12 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-    <p>Welcome to my GitHub Pages site.</p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shan Online Store</title>
+    <style>
+      :root {
+        --bg: #eef4ff;
+        --surface: #ffffff;
+        --primary: #0d6efd;
+        --primary-dark: #0b5ed7;
+        --text: #212529;
+        --muted: #6c757d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+      .container {
+        width: min(1100px, 96%);
+        margin: 28px auto;
+        padding: 20px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: var(--primary);
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .hero {
+        background: var(--surface);
+        border-radius: 18px;
+        padding: 36px 28px;
+        box-shadow: 0 18px 40px rgba(26, 54, 126, 0.08);
+        text-align: center;
+      }
+      .eyebrow {
+        color: var(--primary);
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        margin: 0 0 16px;
+      }
+      .lead {
+        color: var(--muted);
+        max-width: 760px;
+        margin: 0 auto 24px;
+        line-height: 1.7;
+      }
+      .hero-actions {
+        display: inline-flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn {
+        display: inline-block;
+        padding: 14px 26px;
+        background: var(--primary);
+        color: white;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+      .btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+      .secondary {
+        display: inline-block;
+        padding: 14px 26px;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        margin-top: 30px;
+      }
+      .card {
+        background: var(--surface);
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.05);
+      }
+      .card h2 {
+        margin-top: 0;
+      }
+      .card p {
+        margin: 10px 0 0;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: var(--primary);
+      }
+      footer {
+        margin-top: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      @media (max-width: 760px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a class="brand" href="Index.html">
+          <div class="logo">
+            <img src="images/shAn.png" alt="Shan Online Store logo" />
+          </div>
+          <div>
+            <div style="font-weight: 700;">Shan Online Store</div>
+            <div style="font-size: 0.88rem; color: var(--muted);">Fast local shopping</div>
+          </div>
+        </a>
+        <nav>
+          <a href="Index.html">Home</a>
+          <a href="HTML.html">Store</a>
+          <a href="delivery.html">Delivery</a>
+          <a href="order-history.html">Order History</a>
+          <a href="Pay.html">Pay</a>
+        </nav>
+      </header>
+      <main>
+        <section class="hero">
+          <p class="eyebrow">Local storefront</p>
+          <h1>Shop with confidence and checkout in one simple demo website.</h1>
+          <p class="lead">
+            Explore featured products, schedule fast delivery, and view your recent orders with a polished storefront experience.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="HTML.html">Browse Store</a>
+            <a class="secondary" href="delivery.html">Delivery Info</a>
+          </div>
+        </section>
+        <div class="grid">
+          <section class="card">
+            <h2>Featured store</h2>
+            <p class="muted">Browse sample items and choose the ones you want to buy.</p>
+            <p>Visit the store page to view product cards, prices, and a direct checkout link.</p>
+          </section>
+          <section class="card">
+            <h2>Delivery details</h2>
+            <p class="muted">Choose a shipping option and keep delivery times clear.</p>
+            <p>The delivery page highlights same-day, express, and standard shipping choices with local pricing.</p>
+          </section>
+          <section class="card">
+            <h2>Order history</h2>
+            <p class="muted">Track recent activity and order status at a glance.</p>
+            <p>View formatted order records and delivery updates to stay organized.</p>
+          </section>
+          <section class="card">
+            <h2>Easy checkout</h2>
+            <p class="muted">Complete payment details with a simple, mobile-friendly form.</p>
+            <p>Use the checkout page to simulate a payment and confirm your order.</p>        </section>
+          <section class="card">
+          <h2>Contact Information</h2>
+          <p style="margin: 8px 1; color: var(--muted);">Phone: +1 (876) 850-2944</p>
+          <p style="margin: 8px 1; color: var(--muted);">Email: shaninkprint@gmail.com</p>
+          <p style="margin: 8px 1; color: var(--muted);">Address: 11 John Street, Kingston, Jamaica</p>
+          </section>
+        </div>
+    </main>
+      <footer class="footer">
+        <div>
+          <a href="Index.html">Home</a> ·
+          <a href="HTML.html">Store</a> ·
+          <a href="order-history.html">Order History</a> ·
+          <a href="Pay.html">Pay</a>
+        </div>
+        <div style="margin-top:6px;">Published 2026. Owner: Shanique.</div>
+      </footer>
+    </div>
+  </body>
 </html>
